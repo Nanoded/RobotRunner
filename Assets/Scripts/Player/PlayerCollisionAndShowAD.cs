@@ -9,15 +9,14 @@ public class PlayerCollisionAndShowAD : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _coinCounter;
     [SerializeField] private int _coinCost;
     [SerializeField] private float _timeMagnifier;
+    [SerializeField] private string _interstitialID;
     private float _timerAD;
     private InterstitialAd _interstitialAd;
-    private string _interstitialID;
 
     private void Start()
     {
         _timerAD = PlayerPrefs.GetFloat("Timer");
         MobileAds.Initialize(initStatus => { });
-        _interstitialID = "ca-app-pub-1693074124846642/6519118805";
 
         _interstitialAd = new InterstitialAd(_interstitialID);
         AdRequest adRequest = new AdRequest.Builder().Build();
