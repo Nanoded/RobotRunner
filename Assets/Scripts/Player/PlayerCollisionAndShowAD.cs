@@ -17,14 +17,15 @@ public class PlayerCollisionAndShowAD : MonoBehaviour
     {
         _timerAD = PlayerPrefs.GetFloat("Timer");
         MobileAds.Initialize(initStatus => { });
-        _interstitialID = "ca-app-pub-3940256099942544/1033173712";
+        _interstitialID = "ca-app-pub-1693074124846642/6519118805";
+
+        _interstitialAd = new InterstitialAd(_interstitialID);
+        AdRequest adRequest = new AdRequest.Builder().Build();
+        _interstitialAd.LoadAd(adRequest);
     }
 
     private void Awake()
     {
-        _interstitialAd = new InterstitialAd(_interstitialID);
-        AdRequest adRequest = new AdRequest.Builder().Build();
-        _interstitialAd.LoadAd(adRequest);
     }
 
     private void Update()
@@ -35,7 +36,7 @@ public class PlayerCollisionAndShowAD : MonoBehaviour
 
     private void ShowAd()
     {
-        if(_timerAD >= 45 && _interstitialAd.IsLoaded())
+        if (_timerAD >= 45 && _interstitialAd.IsLoaded())
         {
             _interstitialAd.Show();
             _timerAD = 0;
